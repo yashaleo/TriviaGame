@@ -95,6 +95,8 @@ h3 {
     border: 0.1rem solid whitesmoke;
     background-color: whitesmoke;
     opacity: .7;
+    padding: 1rem;
+
   }
 
 .choice-container {
@@ -105,10 +107,17 @@ h3 {
   border: 0.1rem solid whitesmoke;
   background-color: whitesmoke;
   opacity: .7;
+  padding: 1rem;
 }
 
-.choices {
-    opacity: 1;
-    padding: 1rem;
+.choice {
+    width: 100%;
 }
 
+.correct {
+    background-color: rgb(59, 126, 59);
+}
+
+.incorret {
+    background-color: rgb(247, 102, 102);
+}
