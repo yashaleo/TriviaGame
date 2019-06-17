@@ -189,7 +189,6 @@ var questions = [
   },
 ];
 
-var answerScore = 1;
 var maxQuestions = 10;
 
 startGame = () => {
@@ -198,6 +197,32 @@ startGame = () => {
   avaiableQuestions = [...questions];
   getNewQuestion();
 };
+
+
+startTimer = (duration, display) => {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            return window.location.assign("end.html");
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var oneMinute = 60 * 1,
+        display = document.querySelector('#time');
+    startTimer(oneMinute, display);
+};
+
+
 
 getNewQuestion = () => {
     if (avaiableQuestions.length == 0 || questionCounter >= maxQuestions) {
@@ -226,6 +251,8 @@ choices.forEach(choice => {
     var check = "incorret";
     if (selectedAnswer == currentQuestion.answer){
         check = "correct";
+        score++;
+        $("finalScore").text(score);
     }
 
     selectedChoice.parentElement.classList.add(check);
@@ -237,9 +264,14 @@ setTimeout( () => {
   });
 });
 
-incrementScor = num => {
-    score +=num;
-    scoreText.innerText = score;
+
+
+function scoreBoard () {
+    if (selectedAnswer == currentQuestion.answer){
+    score++;
+    $("#finalScore").text(score);
+    console.log("Correct answer should be "+ score)
+}
 }
 
 startGame();
